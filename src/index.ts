@@ -4,9 +4,6 @@ dotenv.config();
 
 import logger from "./utils/logger";
 
-
-import config from "config";
-import responseTime from "response-time";
 import connect from "./utils/connect";
 
 const app = express();
