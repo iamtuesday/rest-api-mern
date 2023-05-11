@@ -23,12 +23,12 @@ export const signJwt = (
 
   return jwt.sign(object, privateKey, {
     ...(options && options),
-    algorithm: "RS256",
+    // algorithm: "RS256",
   });
 };
 
 export const verifyJwt = (
-  token: string,
+  token: string
   // keyName: "accessTokenPublicKey | refreshTokenPublicKey"
 ) => {
   //Obtener la llave pública
