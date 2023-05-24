@@ -5,7 +5,6 @@ import { FilterQuery } from "mongoose";
 export const createUser = async (input: UserInput) => {
   try {
     const user = await UserModel.create(input);
-    console.log(omit(user.toJSON(), "password"));
     return omit(user.toJSON(), "password");
   } catch (error: any) {
     throw new Error(error);
