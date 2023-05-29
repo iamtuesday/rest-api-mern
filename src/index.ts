@@ -8,12 +8,11 @@ import connect from "./utils/connect";
 import routes from "./route";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 // Middleware para parsear el body de las peticiones
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 app.listen(port, async () => {
   logger.info(`App is running at http://localhost:${port}`);

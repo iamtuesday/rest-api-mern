@@ -9,10 +9,10 @@ import config from "config";
 export const createUserSessionHandler = async (req: Request, res: Response) => {
   // Validate the user's password
   const user = await validatePassword(req.body);
-  console.log(user)
+  console.log(user);
 
   if (!user) {
-    return res.status(401).send("Invalid username or password");
+    return res.status(401).send({ msg: "Invalid username or password" });
   }
 
   // Create a session
@@ -24,7 +24,7 @@ export const createUserSessionHandler = async (req: Request, res: Response) => {
       ...user,
       session: session._id,
     },
-    // "accessTokenPrivateKey",
+    "accessTokenPrivateKey",
     {
       expiresIn: config.get<string>("accessTokenTtl"),
     }
@@ -33,7 +33,7 @@ export const createUserSessionHandler = async (req: Request, res: Response) => {
   // Create a refresh token
   const refreshToken = signJwt(
     { ...user, session: session._id },
-    // "refreshTokenPrivateKey",
+    "refreshTokenPrivateKey",
     {
       expiresIn: config.get<string>("refreshTokenTtl"),
     }
@@ -42,3 +42,7 @@ export const createUserSessionHandler = async (req: Request, res: Response) => {
   // Return access and refresh tokens
   return res.send({ accessToken, refreshToken });
 };
+
+export const getUserSessionsHandler = async (req: Request, res: Response) => {
+
+}
